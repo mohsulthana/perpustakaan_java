@@ -28,9 +28,7 @@ public class modelBuku implements controllerBuku {
         koneksi con = new koneksi();
         Connection konek = con.getKoneksi();
         String sql  = "INSERT INTO buku (id_buku, kode_buku, judul_buku, isbn, pengarang) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement prepare = konek.prepareStatement(sql);
-        
-        try {
+        try (PreparedStatement prepare = konek.prepareStatement(sql)) {
             prepare.setString(1, null);
             prepare.setString(2, buku.txtKodeBuku.getText());
             prepare.setString(3, buku.txtJudulBuku.getText());
@@ -40,8 +38,6 @@ public class modelBuku implements controllerBuku {
             prepare.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-        } finally {
-            prepare.close();
         }
     }
 
@@ -59,7 +55,7 @@ public class modelBuku implements controllerBuku {
             
             while(rs.next())
             {
-                Object[] obj    = new Object[8];
+                Object[] obj    = new Object[4];
                 obj[0]          = rs.getString(1);
                 obj[1]          = rs.getString(2);
                 obj[2]          = rs.getString(3);
@@ -76,16 +72,13 @@ public class modelBuku implements controllerBuku {
         koneksi con             = new koneksi();
         Connection konek        = con.getKoneksi();
         String sql              = "DELETE FROM buku where kodeBuku = ?";
-        PreparedStatement prepare = konek.prepareStatement(sql);
-                
-        try {
+        try (PreparedStatement prepare = konek.prepareStatement(sql)) {
             prepare.setString(1, buku.txtKodeBuku.getText());
             prepare.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
         } catch (HeadlessException | SQLException e) {
             System.err.println(e);
         } finally {
-            prepare.close();
             tampil(buku);
             buku.setLebarKolom();
         }
