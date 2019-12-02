@@ -32,12 +32,10 @@ public class modelSiswa implements controllerSiswa {
         
         while(rs.next())
         {
-            Object[] obj    = new Object[6];
-            obj[0]          = rs.getString(2);
-            obj[1]          = rs.getString(3);
-            obj[2]          = rs.getString(4);
-            obj[3]          = rs.getString(5);
-            obj[4]          = rs.getString(6);
+            Object[] obj    = new Object[3];
+            obj[0]          = rs.getString(1);
+            obj[1]          = rs.getString(2);
+            obj[3]          = rs.getString(4);
             siswa.tableModel.addRow(obj);
         }
     }
