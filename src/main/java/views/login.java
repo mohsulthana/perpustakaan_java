@@ -5,6 +5,13 @@
  */
 package views;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author muham
@@ -43,6 +50,11 @@ public class login extends javax.swing.JFrame {
         jLabel3.setText("LOGIN");
 
         jButton1.setText("LOGIN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,7 +75,7 @@ public class login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(jButton1)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,11 +92,46 @@ public class login extends javax.swing.JFrame {
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            koneksi con = new koneksi();
+            Connection konek = con.getKoneksi();
+            Statement statement = konek.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM user where username ='" + txtUsername.getText() + "' AND password ='" + txtPassword.getText() + "'");
+            
+            if(rs.next()) {
+                if (txtUsername.getText().equals(rs.getString("username"))) {
+                    if (txtPassword.getText().equals(rs.getString("password"))) {
+                        formBuku buku = new formBuku();
+                        buku.setVisible(true);
+                        this.setVisible(false);
+                        this.setDefaultCloseOperation(login.EXIT_ON_CLOSE);
+                        this.dispose();
+                        JOptionPane.showMessageDialog(null, "Berhasil masuk");                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password salah");
+                        txtPassword.setText("");
+                        txtPassword.requestFocus();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username salah");
+                    txtUsername.setText("");
+                    txtPassword.setText("");
+                    txtUsername.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,22 +149,16 @@ public class login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new login().setVisible(true);
         });
     }
 
