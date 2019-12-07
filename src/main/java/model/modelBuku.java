@@ -28,7 +28,8 @@ public class modelBuku implements controllerBuku {
         koneksi con = new koneksi();
         Connection konek = con.getKoneksi();
         String sql  = "INSERT INTO buku (id_buku, kode_buku, judul_buku, isbn, pengarang) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement prepare = konek.prepareStatement(sql)) {
+        PreparedStatement prepare = konek.prepareStatement(sql);
+        try {
             prepare.setString(1, null);
             prepare.setString(2, buku.txtKodeBuku.getText());
             prepare.setString(3, buku.txtJudulBuku.getText());
@@ -36,8 +37,14 @@ public class modelBuku implements controllerBuku {
             prepare.setString(5, buku.txtPengarang.getText());
             
             prepare.execute();
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
+        } finally {
+            prepare.close();
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            this.reset(buku);
+            this.tampil(buku);
         }
     }
 
@@ -56,10 +63,10 @@ public class modelBuku implements controllerBuku {
             while(rs.next())
             {
                 Object[] obj    = new Object[4];
-                obj[0]          = rs.getString(1);
-                obj[1]          = rs.getString(2);
-                obj[2]          = rs.getString(3);
-                obj[3]          = rs.getString(4);
+                obj[0]          = rs.getString(2);
+                obj[1]          = rs.getString(3);
+                obj[2]          = rs.getString(4);
+                obj[3]          = rs.getString(5);
                 buku.tableModel.addRow(obj);
             }
         } catch (SQLException e) {
@@ -71,11 +78,12 @@ public class modelBuku implements controllerBuku {
     public void hapus(formBuku buku) throws SQLException {
         koneksi con             = new koneksi();
         Connection konek        = con.getKoneksi();
-        String sql              = "DELETE FROM buku where kodeBuku = ?";
+        String sql              = "DELETE FROM buku where kode_buku=?";
         try (PreparedStatement prepare = konek.prepareStatement(sql)) {
             prepare.setString(1, buku.txtKodeBuku.getText());
             prepare.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            prepare.close();
         } catch (HeadlessException | SQLException e) {
             System.err.println(e);
         } finally {
@@ -90,5 +98,10 @@ public class modelBuku implements controllerBuku {
         buku.txtJudulBuku.setText("");
         buku.txtPengarang.setText("");
         buku.txtKodeBuku.setText("");
+    }
+
+    @Override
+    public void ubah(formBuku buku) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

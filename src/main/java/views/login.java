@@ -108,10 +108,9 @@ public class login extends javax.swing.JFrame {
             if(rs.next()) {
                 if (txtUsername.getText().equals(rs.getString("username"))) {
                     if (txtPassword.getText().equals(rs.getString("password"))) {
-                        formBuku buku = new formBuku();
-                        buku.setVisible(true);
+                        dashboard dashboard = new dashboard();
+                        dashboard.setVisible(true);
                         this.setVisible(false);
-                        this.setDefaultCloseOperation(login.EXIT_ON_CLOSE);
                         this.dispose();
                         JOptionPane.showMessageDialog(null, "Berhasil masuk");                        
                     } else {
