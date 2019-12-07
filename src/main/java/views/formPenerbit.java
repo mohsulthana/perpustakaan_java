@@ -5,11 +5,16 @@
  */
 package views;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
+import model.modelBuku;
 import model.modelPenerbit;
 
 /**
@@ -46,6 +51,7 @@ public class formPenerbit extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtPenerbit = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,28 +76,34 @@ public class formPenerbit extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setBackground(new java.awt.Color(255, 0, 0));
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtPenerbit))
+                    .addComponent(txtPenerbit)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(33, 33, 33)
                 .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(btnHapus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,7 +116,9 @@ public class formPenerbit extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnHapus))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
@@ -118,6 +132,27 @@ public class formPenerbit extends javax.swing.JFrame {
             Logger.getLogger(formPenerbit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        int row = tabel.getSelectedRow();
+        String selected = (String) tabel.getValueAt(row, 0);
+        
+        koneksi con             = new koneksi();
+        Connection konek        = con.getKoneksi();
+        String sql              = "DELETE FROM penerbit where id_penerbit='" + selected + "'";
+        PreparedStatement prepare = null;
+        try {
+            prepare = konek.prepareStatement(sql);
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            prepare.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            modelPenerbit penerbit = new modelPenerbit();
+            penerbit.tampil(this);
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +190,7 @@ public class formPenerbit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
