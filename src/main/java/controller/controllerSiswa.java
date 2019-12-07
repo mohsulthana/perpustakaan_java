@@ -14,5 +14,6 @@ import views.tabelSiswa;
  */
 public interface controllerSiswa {
     public void tampil(tabelSiswa siswa) throws SQLException;
-    public void arsipkan(tabelSiswa siswa) throws SQLException;
+    public void reset(tabelSiswa siswa);
+    public void simpan(tabelSiswa siswa) throws SQLException;
 }
