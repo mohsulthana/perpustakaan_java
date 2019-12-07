@@ -107,7 +107,7 @@ public class login extends javax.swing.JFrame {
             
             if(rs.next()) {
                 if (txtUsername.getText().equals(rs.getString("username"))) {
-                    if (txtPassword.getText().equals(rs.getString("password"))) {
+                    if (String.valueOf(txtPassword.getPassword()).equals(rs.getString("password"))) {
                         dashboard dashboard = new dashboard();
                         dashboard.setVisible(true);
                         this.setVisible(false);
