@@ -74,13 +74,11 @@ public class modelBuku implements controllerBuku {
         }
     }
 
-    @Override
     public void hapus(formBuku buku) throws SQLException {
         koneksi con             = new koneksi();
         Connection konek        = con.getKoneksi();
-        String sql              = "DELETE FROM buku where kode_buku=?";
+        String sql              = "DELETE FROM buku where kode_buku='" + buku.txtKodeBuku.getText() + "'";
         try (PreparedStatement prepare = konek.prepareStatement(sql)) {
-            prepare.setString(1, buku.txtKodeBuku.getText());
             prepare.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
             prepare.close();

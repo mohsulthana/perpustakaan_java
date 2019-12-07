@@ -15,7 +15,6 @@ import views.formBuku;
 public interface controllerBuku {
     public void simpan(formBuku buku) throws SQLException;
     public void tampil(formBuku buku) throws SQLException;
-    public void hapus(formBuku buku) throws SQLException;
     public void reset(formBuku buku) throws SQLException;
     public void ubah(formBuku buku) throws SQLException;
 }

@@ -6,14 +6,18 @@
 package views;
 
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import koneksi.koneksi;
 import model.modelBuku;
 
 /**
@@ -244,10 +248,28 @@ public final class formBuku extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPengarangActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+
+        int row = tabel.getSelectedRow();
+        String selected = (String) tabel.getValueAt(row, 0);
+        
+        koneksi con             = new koneksi();
+        Connection konek        = con.getKoneksi();
+        String sql              = "DELETE FROM buku where kode_buku='" + selected + "'";
+        PreparedStatement prepare = null;
         try {
-            model.hapus(this);
+            prepare = konek.prepareStatement(sql);
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            prepare.close();
         } catch (SQLException ex) {
             Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            modelBuku buku = new modelBuku();
+            try {
+                buku.tampil(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
