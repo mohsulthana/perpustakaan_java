@@ -54,7 +54,7 @@ public final class modelPeminjaman implements controllerPeminjaman {
 
     @Override
     public void simpan(peminjaman pinjam) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -71,10 +71,5 @@ public final class modelPeminjaman implements controllerPeminjaman {
         Statement sttmnt    = konek.createStatement();
         String sql          = "SELECT * FROM siswa";
         ResultSet rs        = sttmnt.executeQuery(sql);
-        
-//        while(rs.next()) {
-//            String siswa = rs.getString("nama");
-//            pinjam.comboBoxSiswa.addItem(siswa);
-//        }
     }
 }

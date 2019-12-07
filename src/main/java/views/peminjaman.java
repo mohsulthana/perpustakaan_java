@@ -32,16 +32,15 @@ public class peminjaman extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         comboBoxSiswa = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        txtLamaPinjam = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        statusPeminjaman = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        buku = new javax.swing.JComboBox<>();
+        comboBoxBuku = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,19 +57,22 @@ public class peminjaman extends javax.swing.JFrame {
 
         jLabel3.setText("Lama pinjam");
 
-        jRadioButton1.setText("Pinjam");
-
-        statusPeminjaman.setText("Selesai");
-
         jLabel4.setText("Status");
 
-        buku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxBuku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Buku");
 
         jButton1.setText("Simpan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Reset");
+
+        jLabel6.setText("Form Peminjaman");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,39 +98,38 @@ public class peminjaman extends javax.swing.JFrame {
                         .addComponent(jButton2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLamaPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jRadioButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(statusPeminjaman))
                         .addComponent(comboBoxSiswa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buku, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboBoxBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(178, 178, 178))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(comboBoxSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLamaPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(statusPeminjaman)
-                    .addComponent(jLabel4))
-                .addGap(44, 44, 44)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel4)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -141,6 +142,10 @@ public class peminjaman extends javax.swing.JFrame {
     private void comboBoxSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSiswaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSiswaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,9 +183,9 @@ public class peminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> buku;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> comboBoxBuku;
     public javax.swing.JComboBox<String> comboBoxSiswa;
     private org.jdatepicker.impl.DateComponentFormatter dateComponentFormatter1;
     private javax.swing.JButton jButton1;
@@ -190,8 +195,7 @@ public class peminjaman extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JRadioButton statusPeminjaman;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtLamaPinjam;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
@@ -88,6 +89,7 @@ public final class dashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        tambahPeminjaman = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
@@ -128,7 +130,7 @@ public final class dashboard extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(537, 537, 537)
                 .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -157,6 +159,13 @@ public final class dashboard extends javax.swing.JFrame {
 
         jLabel2.setText("DAFTAR PEMINJAMAN");
 
+        tambahPeminjaman.setText("Tambah peminjaman");
+        tambahPeminjaman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahPeminjamanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -164,20 +173,22 @@ public final class dashboard extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(307, 307, 307))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tambahPeminjaman))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(152, 152, 152))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(tambahPeminjaman))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 88, Short.MAX_VALUE))
@@ -282,6 +293,7 @@ public final class dashboard extends javax.swing.JFrame {
         try {
             formBuku buku = new formBuku();
             buku.setVisible(true);
+            buku.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -291,6 +303,7 @@ public final class dashboard extends javax.swing.JFrame {
         try {
             formBuku buku = new formBuku();
             buku.setVisible(true);
+            buku.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,6 +313,7 @@ public final class dashboard extends javax.swing.JFrame {
         try {
             tabelSiswa siswa = new tabelSiswa();
             siswa.setVisible(true);
+            siswa.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -308,20 +322,29 @@ public final class dashboard extends javax.swing.JFrame {
     private void btnPenerbitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenerbitActionPerformed
         formPenerbit penerbit = new formPenerbit();
         penerbit.setVisible(true);
+        penerbit.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnPenerbitActionPerformed
 
     private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
         try {
             formUser user = new formUser();
             user.setVisible(true);
+            user.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUserActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Logged out");
+        this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void tambahPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPeminjamanActionPerformed
+        peminjaman pinjam = new peminjaman();
+        pinjam.setVisible(true);
+        pinjam.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_tambahPeminjamanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,5 +398,6 @@ public final class dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabel;
+    private javax.swing.JButton tambahPeminjaman;
     // End of variables declaration//GEN-END:variables
 }

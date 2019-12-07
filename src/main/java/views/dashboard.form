@@ -66,16 +66,15 @@
               <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="tambahPeminjaman" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="442" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane1" min="-2" pref="442" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,8 +82,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="tambahPeminjaman" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="323" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="88" max="32767" attributes="0"/>
@@ -106,7 +108,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="537" pref="537" max="-2" attributes="0"/>
                       <Component id="btnUser" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="btnLogOut" min="-2" pref="89" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
@@ -208,6 +210,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="DAFTAR PEMINJAMAN"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="tambahPeminjaman">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tambah peminjaman"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tambahPeminjamanActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
