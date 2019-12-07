@@ -26,7 +26,8 @@ public final class admin_dashboard extends javax.swing.JFrame {
     public DefaultTableModel tableModel;
     String header[] = {"ID Pinjam", "Tanggal Pinjam", "Kode Siswa", "Lama Pinjam", "Status"};
     modelPeminjaman model = new modelPeminjaman();
-
+    peminjaman pinjam = new peminjaman();
+    
     public admin_dashboard() throws SQLException {
         initComponents();
         tableModel      = new DefaultTableModel(null, header);
@@ -253,7 +254,6 @@ public final class admin_dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPenerbitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        peminjaman pinjam = new peminjaman();
         pinjam.setVisible(true);
         pinjam.setTitle("Form Tambah daftar Peminjaman");
         pinjam.setResizable(false);

@@ -6,6 +6,8 @@
 package views;
 
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,8 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import koneksi.koneksi;
+import model.modelBuku;
 import model.modelPeminjaman;
 
 /**
@@ -26,6 +30,7 @@ public final class dashboard extends javax.swing.JFrame {
     public DefaultTableModel tableModel;
     String header[] = {"ID Pinjam", "Tanggal Pinjam", "Kode Siswa", "Lama Pinjam", "Status"};
     modelPeminjaman model = new modelPeminjaman();
+    peminjaman pinjam = new peminjaman();
     
     /**
      * Creates new form dashboard
@@ -91,6 +96,7 @@ public final class dashboard extends javax.swing.JFrame {
         tabel = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         tambahPeminjaman = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnFormBuku = new javax.swing.JButton();
@@ -163,12 +169,24 @@ public final class dashboard extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("DAFTAR PEMINJAMAN");
 
+        tambahPeminjaman.setBackground(new java.awt.Color(51, 153, 0));
+        tambahPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         tambahPeminjaman.setText("Tambah peminjaman");
         tambahPeminjaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahPeminjamanActionPerformed(evt);
+            }
+        });
+
+        btnHapus.setBackground(new java.awt.Color(255, 0, 51));
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
             }
         });
 
@@ -179,25 +197,30 @@ public final class dashboard extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tambahPeminjaman)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnHapus))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tambahPeminjaman))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(132, 132, 132)))
                 .addGap(152, 152, 152))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(tambahPeminjaman))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 110, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tambahPeminjaman)
+                    .addComponent(btnHapus))
+                .addGap(0, 64, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 153));
@@ -240,7 +263,7 @@ public final class dashboard extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jLabel1)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
             .addComponent(btnFormBuku, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSiswa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPenerbit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,11 +288,10 @@ public final class dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(779, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +336,6 @@ public final class dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPenerbitActionPerformed
 
     private void tambahPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPeminjamanActionPerformed
-        peminjaman pinjam = new peminjaman();
         pinjam.setVisible(true);
         pinjam.setTitle("Form tambah daftar peminjaman");
         pinjam.setResizable(false);
@@ -340,6 +361,30 @@ public final class dashboard extends javax.swing.JFrame {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUserActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        int row = tabel.getSelectedRow();
+        String selected = (String) tabel.getValueAt(row, 0);
+        
+        koneksi con             = new koneksi();
+        Connection konek        = con.getKoneksi();
+        String sql              = "DELETE FROM peminjaman where id_pinjam='" + selected + "'";
+        PreparedStatement prepare = null;
+        try {
+            prepare = konek.prepareStatement(sql);
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            prepare.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                model.tampil(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,6 +425,7 @@ public final class dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFormBuku;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPenerbit;
     private javax.swing.JButton btnSiswa;

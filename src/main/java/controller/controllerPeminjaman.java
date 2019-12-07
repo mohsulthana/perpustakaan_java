@@ -17,5 +17,4 @@ public interface controllerPeminjaman {
     public void tampil(dashboard pinjam) throws SQLException;
     public void simpan(peminjaman pinjam) throws SQLException;
     public void statusSelesai(peminjaman pinjam) throws SQLException;
-    public void hapus(peminjaman pinjam) throws SQLException;
 }
