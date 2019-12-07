@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2019 at 12:23 PM
+-- Generation Time: Dec 07, 2019 at 05:35 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -36,17 +36,6 @@ CREATE TABLE `buku` (
   `pengarang` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `buku`
---
-
-INSERT INTO `buku` (`id_buku`, `kode_buku`, `judul_buku`, `isbn`, `pengarang`) VALUES
-(1, 'BA-01', 'Bahasa Indonesia', '0908', 'Mawardi'),
-(11, 'BI-01', 'Bahasa Inggris', '0902', 'Gramedia'),
-(12, 'MM-01', 'Matematika', '0011', 'Gramed'),
-(13, 'IPA', 'IPA', '22', 'Grame'),
-(14, 'MM-01', 'Mtk', '22', 'er');
-
 -- --------------------------------------------------------
 
 --
@@ -56,7 +45,8 @@ INSERT INTO `buku` (`id_buku`, `kode_buku`, `judul_buku`, `isbn`, `pengarang`) V
 CREATE TABLE `peminjaman` (
   `id_pinjam` int(11) NOT NULL,
   `tgl_pinjam` date NOT NULL,
-  `kd_siswa` int(11) NOT NULL,
+  `nama_siswa` varchar(255) NOT NULL,
+  `buku` varchar(255) NOT NULL,
   `lama_pinjam` int(11) NOT NULL,
   `status` enum('Dipinjam','Dikembalikan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -77,9 +67,7 @@ CREATE TABLE `penerbit` (
 --
 
 INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`) VALUES
-(1, 'Gramedia'),
-(2, 'Pustaka'),
-(3, 'Weebly');
+(2, 'Pustaka');
 
 -- --------------------------------------------------------
 
@@ -92,16 +80,16 @@ CREATE TABLE `siswa` (
   `nama` varchar(50) NOT NULL,
   `nisn` varchar(50) NOT NULL,
   `tempat_lahir` varchar(100) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `alamat` text NOT NULL
+  `alamat` text NOT NULL,
+  `isAvailable` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nama`, `nisn`, `tempat_lahir`, `tanggal_lahir`, `alamat`) VALUES
-(1, 'Indah Rosita', '0902', 'Kerinci', '2019-12-17', 'Indralaya');
+INSERT INTO `siswa` (`id_siswa`, `nama`, `nisn`, `tempat_lahir`, `alamat`, `isAvailable`) VALUES
+(1, 'Indah Rosita', '0902', 'Kerinci', 'Indralaya', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +110,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `name`, `password`, `role`) VALUES
-(1, 'mohsultana', 'Moh Sulthan', '123', 'Super Admin');
+(2, 'indah', 'Indah Rosita', '123', 'Super Admin'),
+(3, 'sultan', 'sultan', '123', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +155,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -178,19 +167,19 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `penerbit`
 --
 ALTER TABLE `penerbit`
-  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
