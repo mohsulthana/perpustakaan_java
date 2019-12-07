@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import views.formUser;
 
@@ -43,7 +44,34 @@ public class modelUser implements controllerUser {
 
     @Override
     public void tambah(formUser user) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        koneksi con = new koneksi();
+        Connection konek = con.getKoneksi();
+        String sql  = "INSERT INTO user (user_id, username, name, password, role) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement prepare = konek.prepareStatement(sql);
+        try {
+            prepare.setString(1, null);
+            prepare.setString(2, user.txtUsername.getText());
+            prepare.setString(3, user.txtName.getText());
+            prepare.setString(4, String.valueOf(user.txtPassword.getPassword()));
+            prepare.setString(5, (String) user.txtRole.getSelectedItem());
+            
+            prepare.execute();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            prepare.close();
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            this.reset(user);
+            this.tampil(user);
+        }
+    }
+
+    @Override
+    public void reset(formUser user) {
+        user.txtUsername.setText("");
+        user.txtName.setText("");
+        user.txtPassword.setText("");
     }
     
 }

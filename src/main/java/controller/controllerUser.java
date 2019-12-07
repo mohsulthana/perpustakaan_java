@@ -15,4 +15,5 @@ import views.formUser;
 public interface controllerUser {
     public void tampil(formUser user) throws SQLException;
     public void tambah(formUser user) throws SQLException;
+    public void reset(formUser user);
 }
