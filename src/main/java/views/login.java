@@ -108,11 +108,25 @@ public class login extends javax.swing.JFrame {
             if(rs.next()) {
                 if (txtUsername.getText().equals(rs.getString("username"))) {
                     if (String.valueOf(txtPassword.getPassword()).equals(rs.getString("password"))) {
-                        dashboard dashboard = new dashboard();
-                        dashboard.setVisible(true);
-                        this.setVisible(false);
-                        this.dispose();
-                        JOptionPane.showMessageDialog(null, "Berhasil masuk");                        
+                        
+                        // if admin
+                        if ("Super Admin".equals(rs.getString("role"))) {
+                            dashboard dashboard = new dashboard();
+                            dashboard.setVisible(true);
+                            dashboard.setTitle("Super Admin");
+                            dashboard.setResizable(false);
+                            this.setVisible(false);
+                            this.dispose();
+                            JOptionPane.showMessageDialog(null, "Berhasil masuk");   
+                        } else if ("Admin".equals(rs.getString("role"))) {
+                            admin_dashboard admin = new admin_dashboard();
+                            admin.setVisible(true);
+                            admin.setTitle("Admin");
+                            admin.setResizable(false);
+                            this.setVisible(false);
+                            this.dispose();
+                            JOptionPane.showMessageDialog(null, "Berhasil masuk");   
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Password salah");
                         txtPassword.setText("");

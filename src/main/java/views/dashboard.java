@@ -86,13 +86,13 @@ public final class dashboard extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnUser = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         tambahPeminjaman = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnHome = new javax.swing.JButton();
         btnFormBuku = new javax.swing.JButton();
         btnSiswa = new javax.swing.JButton();
         btnPenerbit = new javax.swing.JButton();
@@ -123,14 +123,19 @@ public final class dashboard extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Super Admin");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(537, 537, 537)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel3)
+                .addGap(462, 462, 462)
                 .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -140,7 +145,8 @@ public final class dashboard extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap())
         );
 
@@ -190,8 +196,8 @@ public final class dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(tambahPeminjaman))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 88, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 110, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 153));
@@ -199,15 +205,6 @@ public final class dashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Perpustakaan");
-
-        btnHome.setBackground(new java.awt.Color(0, 51, 102));
-        btnHome.setForeground(new java.awt.Color(255, 255, 255));
-        btnHome.setText("HOME");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
 
         btnFormBuku.setBackground(new java.awt.Color(0, 51, 102));
         btnFormBuku.setForeground(new java.awt.Color(255, 255, 255));
@@ -244,7 +241,6 @@ public final class dashboard extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addComponent(jLabel1)
                 .addContainerGap(92, Short.MAX_VALUE))
-            .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnFormBuku, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSiswa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPenerbit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -254,14 +250,12 @@ public final class dashboard extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
-                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(55, 55, 55)
                 .addComponent(btnFormBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(btnSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -289,20 +283,12 @@ public final class dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        try {
-            formBuku buku = new formBuku();
-            buku.setVisible(true);
-            buku.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        } catch (SQLException ex) {
-            Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnHomeActionPerformed
-
     private void btnFormBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormBukuActionPerformed
         try {
             formBuku buku = new formBuku();
             buku.setVisible(true);
+            buku.setTitle("Form Buku");
+            buku.setResizable(false);
             buku.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -313,6 +299,8 @@ public final class dashboard extends javax.swing.JFrame {
         try {
             tabelSiswa siswa = new tabelSiswa();
             siswa.setVisible(true);
+            siswa.setTitle("Form Siswa");
+            siswa.setResizable(false);
             siswa.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -325,26 +313,33 @@ public final class dashboard extends javax.swing.JFrame {
         penerbit.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnPenerbitActionPerformed
 
+    private void tambahPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPeminjamanActionPerformed
+        peminjaman pinjam = new peminjaman();
+        pinjam.setVisible(true);
+        pinjam.setTitle("Form tambah daftar peminjaman");
+        pinjam.setResizable(false);
+        pinjam.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_tambahPeminjamanActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        JOptionPane.showMessageDialog(null, "Logged out");
+        login log = new login();
+        log.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
     private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
         try {
             formUser user = new formUser();
             user.setVisible(true);
+            user.setVisible(true);
+            user.setTitle("Form user");
             user.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } catch (SQLException ex) {
             Logger.getLogger(dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUserActionPerformed
-
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        JOptionPane.showMessageDialog(null, "Logged out");
-        this.dispose();
-    }//GEN-LAST:event_btnLogOutActionPerformed
-
-    private void tambahPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPeminjamanActionPerformed
-        peminjaman pinjam = new peminjaman();
-        pinjam.setVisible(true);
-        pinjam.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_tambahPeminjamanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,13 +380,13 @@ public final class dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFormBuku;
-    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPenerbit;
     private javax.swing.JButton btnSiswa;
     private javax.swing.JButton btnUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

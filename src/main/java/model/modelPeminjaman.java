@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import koneksi.koneksi;
 import views.dashboard;
+import views.admin_dashboard;
 import views.peminjaman;
 
 /**
@@ -29,6 +30,30 @@ public final class modelPeminjaman implements controllerPeminjaman {
 
     @Override
     public void tampil(dashboard pinjam) throws SQLException {
+        pinjam.tableModel.getDataVector().removeAllElements();
+        pinjam.tableModel.getDataVector().removeAllElements();
+        
+        try {
+            Statement sttmnt    = konek.createStatement();
+            String sql          = "SELECT * FROM peminjaman";
+            ResultSet rs        = sttmnt.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                Object[] obj    = new Object[2];
+                obj[0]          = rs.getString(1);
+                obj[1]          = rs.getString(2);
+                obj[2]          = rs.getString(3);
+                obj[3]          = rs.getString(4);
+                obj[4]          = rs.getString(5);
+                pinjam.tableModel.addRow(obj);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+    }
+    
+    public void tampil_admin(admin_dashboard pinjam) throws SQLException {
         pinjam.tableModel.getDataVector().removeAllElements();
         pinjam.tableModel.getDataVector().removeAllElements();
         
