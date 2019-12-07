@@ -5,11 +5,16 @@
  */
 package views;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
+import model.modelBuku;
 import model.modelUser;
 
 /**
@@ -86,6 +91,11 @@ public class formUser extends javax.swing.JFrame {
         });
 
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         resetBtn.setText("Reset");
         resetBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +180,30 @@ public class formUser extends javax.swing.JFrame {
             Logger.getLogger(formUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        int row = tabel.getSelectedRow();
+        String selected = (String) tabel.getValueAt(row, 0);
+        
+        koneksi con             = new koneksi();
+        Connection konek        = con.getKoneksi();
+        String sql              = "DELETE FROM user WHERE username='" + selected + "'";
+        PreparedStatement prepare = null;
+        try {
+            prepare = konek.prepareStatement(sql);
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            prepare.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                model.tampil(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(formUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments

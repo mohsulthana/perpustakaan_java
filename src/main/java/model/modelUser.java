@@ -33,11 +33,10 @@ public class modelUser implements controllerUser {
         
         while(rs.next())
         {
-            Object[] obj    = new Object[6];
+            Object[] obj    = new Object[5];
             obj[0]          = rs.getString(2);
             obj[1]          = rs.getString(3);
-            obj[2]          = rs.getString(4);
-            obj[3]          = rs.getString(5);
+            obj[2]          = rs.getString(5);
             user.tableModel.addRow(obj);
         }
     }
