@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import koneksi.koneksi;
 import views.dashboard;
 import views.admin_dashboard;
@@ -82,22 +83,26 @@ public final class modelPeminjaman implements controllerPeminjaman {
     public void simpan(peminjaman pinjam) throws SQLException {
         koneksi con = new koneksi();
         Connection konek = con.getKoneksi();
-        String sql  = "INSERT INTO peminjaman (id_pinjam, tgl_pinjam, nama_siswa, buku, lama_pinjam, status) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement prepare = konek.prepareStatement(sql);
-        try {
+        String sql  = "INSERT INTO peminjaman (id_pinjam, tgl_pinjam, kd_siswa, lama_pinjam, status) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement prepare = konek.prepareStatement(sql)) {
             prepare.setString(1, null);
 //            prepare.setString(5, buku.txtPengarang.getText());
+            prepare.setString(2,((JTextField) pinjam.tanggal.getDateEditor().getUiComponent()).getText());
             prepare.setString(3, (String) pinjam.comboBoxSiswa.getSelectedItem());
-            prepare.setString(4, (String) pinjam.comboBoxBuku.getSelectedItem());
-            prepare.setString(5, pinjam.txtLamaPinjam.getText());
+//            prepare.setString(4, (String) pinjam.comboBoxBuku.getSelectedItem());
+            prepare.setString(4, pinjam.txtLamaPinjam.getText());
 //            prepare.setString(6, pinjam.st.getText());
-            
+            if (pinjam.dipinjam.isSelected())
+            {
+                prepare.setString(5, "Dipinjam");
+            } else if (pinjam.dikembalikan.isSelected()){
+                prepare.setString(5, "Dikembalikan");
+            }            
             prepare.execute();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
-            prepare.close();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
         }
     }
