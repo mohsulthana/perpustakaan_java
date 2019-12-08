@@ -59,6 +59,7 @@ public class formUser extends javax.swing.JFrame {
         resetBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        updatebutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +111,13 @@ public class formUser extends javax.swing.JFrame {
 
         jLabel6.setText("Tambah User");
 
+        updatebutton.setText("Update");
+        updatebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatebuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,6 +129,8 @@ public class formUser extends javax.swing.JFrame {
                         .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(resetBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(updatebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnHapus))
                     .addGroup(layout.createSequentialGroup()
@@ -180,7 +190,8 @@ public class formUser extends javax.swing.JFrame {
                     .addComponent(btnHapus)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSimpan)
-                        .addComponent(resetBtn)))
+                        .addComponent(resetBtn)
+                        .addComponent(updatebutton)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -222,6 +233,15 @@ public class formUser extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void updatebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebuttonActionPerformed
+        // TODO add your handling code here:
+        try {
+            model.update(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(formUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updatebuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,5 +296,6 @@ public class formUser extends javax.swing.JFrame {
     public javax.swing.JPasswordField txtPassword;
     public javax.swing.JComboBox<String> txtRole;
     public javax.swing.JTextField txtUsername;
+    private javax.swing.JButton updatebutton;
     // End of variables declaration//GEN-END:variables
 }

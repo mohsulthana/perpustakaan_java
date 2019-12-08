@@ -98,6 +98,7 @@ public final class formBuku extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnHapus = new javax.swing.JButton();
+        updatebutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -158,6 +159,13 @@ public final class formBuku extends javax.swing.JFrame {
             }
         });
 
+        updatebutton.setText("Update");
+        updatebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatebuttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,6 +189,8 @@ public final class formBuku extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(simpanBtn)
                         .addGap(18, 18, 18)
+                        .addComponent(updatebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(resetBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +230,8 @@ public final class formBuku extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpanBtn)
                     .addComponent(resetBtn)
-                    .addComponent(btnHapus))
+                    .addComponent(btnHapus)
+                    .addComponent(updatebutton))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -273,6 +284,15 @@ public final class formBuku extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    private void updatebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebuttonActionPerformed
+        // TODO add your handling code here:
+        try {
+            model.update(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(formBuku.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updatebuttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,5 +341,6 @@ public final class formBuku extends javax.swing.JFrame {
     public javax.swing.JTextField txtJudulBuku;
     public javax.swing.JTextField txtKodeBuku;
     public javax.swing.JTextField txtPengarang;
+    private javax.swing.JButton updatebutton;
     // End of variables declaration//GEN-END:variables
 }

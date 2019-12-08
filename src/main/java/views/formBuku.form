@@ -48,6 +48,8 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="simpanBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="updatebutton" min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="resetBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -100,6 +102,7 @@
                   <Component id="simpanBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnHapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="updatebutton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
@@ -216,6 +219,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="updatebutton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatebuttonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -30,6 +30,8 @@
                       <Component id="btnSimpan" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="resetBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="updatebutton" min="-2" pref="69" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnHapus" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -107,6 +109,7 @@
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="btnSimpan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="resetBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updatebutton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="66" max="32767" attributes="0"/>
@@ -218,6 +221,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tambah User"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="updatebutton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updatebuttonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
