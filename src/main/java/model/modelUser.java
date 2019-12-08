@@ -6,10 +6,12 @@
 package model;
 
 import controller.controllerUser;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import views.formUser;
@@ -66,6 +68,23 @@ public class modelUser implements controllerUser {
         }
     }
 
+    public void update(formUser user) throws SQLException {
+    koneksi con             = new koneksi();
+    Connection konek        = con.getKoneksi();
+        String sql              = "UPDATE user SET name='"+ user.txtName.getText() + "', password='"+ String.valueOf(user.txtPassword.getPassword()) +"', role='"+ user.txtRole.getSelectedItem() +"' where username='" + user.txtUsername.getText() + "'";
+    try (PreparedStatement prepare = konek.prepareStatement(sql)) {
+            
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
+            prepare.close();
+            
+        } catch (HeadlessException | SQLException e) {
+            System.err.println(e);
+        } finally {
+            tampil(user);
+        }
+    }
+    
     @Override
     public void reset(formUser user) {
         user.txtUsername.setText("");

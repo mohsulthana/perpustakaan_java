@@ -90,6 +90,24 @@ public class modelBuku implements controllerBuku {
         }
     }
 
+    public void update(formBuku buku) throws SQLException {
+    koneksi con             = new koneksi();
+    Connection konek        = con.getKoneksi();
+    String sql              = "UPDATE buku SET judul_buku='"+ buku.txtJudulBuku.getText() + "', isbn='"+ buku.txtISBN.getText() +"', pengarang='"+ buku.txtPengarang.getText() +"' where kode_buku='" + buku.txtKodeBuku.getText() + "'";
+    try (PreparedStatement prepare = konek.prepareStatement(sql)) {
+            
+            prepare.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
+            prepare.close();
+            
+        } catch (HeadlessException | SQLException e) {
+            System.err.println(e);
+        } finally {
+            tampil(buku);
+            buku.setLebarKolom();
+        }
+    }
+     
     @Override
     public void reset(formBuku buku) throws SQLException {
         buku.txtISBN.setText("");
